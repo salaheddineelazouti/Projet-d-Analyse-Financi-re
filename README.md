@@ -126,4 +126,4 @@ Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
 
 ## Liens
 - [École Centrale Casablanca](https://www.centrale-casablanca.ma/)
-- [Rapport complet (PDF)](https://github.com/salaheddineelazouti/Projet-d-Analyse-Financi-re/blob/master/rapport%20GE.pdf)
+- [Rapport complet (PDF)](./rapport GE.pdf)
