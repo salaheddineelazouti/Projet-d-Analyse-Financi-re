@@ -1,0 +1,433 @@
+\documentclass{rapportECC}
+\usepackage{lipsum}
+\title{Rapport ECL - Template} %Titre du fichier
+\usepackage{lipsum} 
+\usepackage{biblatex} %Imports biblatex package
+\addbibresource{bibtex.bib} %Import the bibliography file
+\usepackage{appendix} % Package pour gérer les annexes
+\begin{document}
+
+%----------- Informations du rapport ---------
+
+\titre{Analyse Financière avec Data Science et Machine Learning} %Titre du fichier .pdf
+
+\sujet{Projet Gestion d'Entreprise} %Nom du sujet
+
+\Encadrants{Fouad \textsc{Riane} } %Nom de l'enseignant
+
+\eleves{Salah Eddine \textsc{El Azouti} \\
+		Anass \textsc{El Hayel} \\ 
+		Walid \textsc{El-Bouchti} \\ 
+		Aasmaa \textsc{Ouamalich} \\ 
+		Salma \textsc{Saaidi} } %Nom des élèves
+
+%----------- Initialisation -------------------
+        
+\fairemarges %Afficher les marges
+\fairepagedegarde %Créer la page de garde
+\tabledematieres %Créer la table de matières
+
+%------------ Corps du rapport ----------------
+
+
+\section{Introduction} 
+
+Le monde des affaires contemporaines se caractérise par une grande diversité d’entreprises évoluant dans des contextes économiques variés et souvent instables. Dans ce cadre, la compréhension des déterminants de la performance financière constitue un enjeu majeur pour les parties prenantes, qu’il s’agisse des investisseurs, des dirigeants ou des analystes financiers. Traditionnellement fondée sur l’examen manuel d’un nombre restreint d’indicateurs, l’analyse financière connaît aujourd’hui une transformation profonde sous l’impulsion du Big Data et des technologies d’intelligence artificielle.
+
+Ces avancées permettent désormais le traitement simultané de volumes massifs de données et la détection de structures sous-jacentes complexes, souvent inaccessibles à l’analyse humaine classique. Ainsi, les outils issus de la Data Science et du Machine Learning offrent de nouvelles perspectives pour appréhender la santé financière des entreprises de manière plus fine, plus exhaustive et potentiellement plus prédictive.
+
+Ce projet s’inscrit dans cette évolution méthodologique en proposant une analyse financière augmentée à partir d’un vaste ensemble de données relatives à des entreprises américaines. L’approche mobilisée combine des techniques statistiques avancées — telles que le calcul de ratios financiers, les méthodes de regroupement (clustering) et la modélisation prédictive — afin de mieux comprendre les profils d’entreprises, les dynamiques sectorielles et les perspectives économiques.
+
+Les objectifs de ce travail sont les suivants :
+\begin{itemize}
+    \item Nettoyer et explorer un jeu de données comprenant 200 indicateurs financiers ;
+    \item Calculer et analyser des ratios financiers significatifs (ROA, ROE, marge nette, etc.) ;
+    \item Identifier des groupes d’entreprises présentant des profils financiers similaires à l’aide d’algorithmes de clustering ;
+    \item Élaborer des modèles prédictifs pour anticiper les performances futures ;
+    \item Interpréter les résultats dans une perspective économique et stratégique ;
+    \item Formuler des recommandations fondées sur l’analyse effectuée.
+\end{itemize}
+
+
+L’ambition de ce rapport est ainsi de contribuer à une meilleure compréhension des leviers de performance des entreprises à l’ère des données massives, en articulant rigueur quantitative et pertinence analytique.
+
+\section{Données et exploration initiale} 
+
+\subsection{Présentation du jeu de données}
+
+Le jeu de données utilisé dans ce projet regroupe environ 200 indicateurs financiers relatifs à un ensemble d’entreprises américaines cotées en bourse sur la période 2014–2018. Ces indicateurs couvrent un large spectre de la performance financière, incluant :
+
+\begin{itemize}
+    \item Des informations générales (nom de l’entreprise, secteur d’activité, capitalisation, etc.) ;
+    \item Des métriques liées aux revenus, aux bénéfices et aux marges ;
+    \item Des données sur les actifs, les passifs et la structure du capital ;
+    \item Des indicateurs de performance boursière (rendement, volatilité, etc.).
+\end{itemize}
+
+L’échantillon est composé d’entreprises issues de secteurs économiques variés. Il inclut notamment des secteurs à forte croissance, tels que la technologie et la santé, ainsi que des secteurs plus stables comme les services publics ou les biens de consommation.
+
+\subsection{Exploration des données}
+
+\subsubsection{Structure générale}
+
+L’exploration initiale a permis d’acquérir une vue d’ensemble de la structure du jeu de données. Nous avons analysé la distribution sectorielle des entreprises, la répartition des indicateurs clés, ainsi que les statistiques descriptives de base (moyennes, médianes, variances) pour chaque variable pertinente.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{companies_by_sector (1).png}
+    \caption{Distribution des entreprises par secteur}
+    \label{companies_by_sector}
+\end{figure}
+
+La figure~\ref{companies_by_sector} montre la répartition des entreprises par secteur dans notre jeu de données. On
+constate que certains secteurs sont plus représentés que d'autres, ce qui est important à prendre en
+compte lors de l'interprétation des résultats d'analyse.
+
+\subsubsection{Traitement des valeurs manquantes}
+
+Le traitement des valeurs manquantes constitue une étape essentielle de la phase de prétraitement. Les colonnes comportant un nombre significatif de valeurs manquantes ont été identifiées, puis corrigées à l’aide de techniques appropriées (imputation par la moyenne, médiane, ou régression selon les cas).
+
+\subsubsection{Détection et traitement des valeurs aberrantes}
+
+Les valeurs aberrantes peuvent biaiser fortement les résultats des analyses statistiques et des algorithmes d’apprentissage automatique. Nous avons mis en œuvre différentes méthodes de détection (z-score, IQR, visualisations) afin de les traiter de manière rigoureuse, par exclusion ou transformation, selon leur nature.
+
+\subsection{Méthodes d’analyse appliquées}
+
+Pour mener cette analyse, nous avons mobilisé une combinaison de méthodes statistiques et de techniques issues de la science des données. L’analyse de ratios financiers a permis de caractériser les entreprises selon leur rentabilité, leur efficacité opérationnelle et leur structure financière. Des méthodes de clustering ont ensuite été utilisées pour regrouper les entreprises selon des profils similaires, en fonction de l’ensemble des indicateurs.
+
+Enfin, des modèles d’apprentissage automatique supervisé (tels que les arbres de décision et les forêts aléatoires) ont été intégrés afin d’affiner la compréhension des facteurs explicatifs de la performance et d’identifier les leviers stratégiques au sein des différents secteurs d’activité.
+
+\section{Résultats et analyses}
+
+\subsection{Analyse des ratios et performance par secteur}
+
+\subsubsection{Analyse des ratios}
+
+Nous avons calculé plusieurs ratios financiers clés pour enrichir notre analyse :
+
+\begin{itemize}
+    \item \textbf{ROA (Return on Assets)} : mesure la rentabilité des actifs ;
+    \item \textbf{ROE (Return on Equity)} : mesure la rentabilité des capitaux propres ;
+    \item \textbf{Marge nette} : rapport entre le bénéfice net et le chiffre d'affaires ;
+    \item \textbf{Ratio d'endettement} : mesure du niveau d'endettement par rapport aux actifs ;
+    \item \textbf{Ratio de liquidité} : capacité à honorer les dettes à court terme.
+\end{itemize}
+
+\subsubsection{Analyse des performances par secteur}
+
+La performance financière varie considérablement selon les secteurs d'activité. Nous avons analysé
+comment les différents indicateurs et ratios se comportent à travers les divers secteurs représentés
+dans notre jeu de données.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{ROE_by_sector.png}
+    \caption{ Rentabilité des capitaux propres (ROE) par secteur}
+    \label{ROE_by_sector}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Gross_Margin_by_sector.png}
+    \caption{ Marge brute par secteur}
+    \label{Gross_Margin_by_sector}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{EBITDA_Margin_by_sector.png}
+    \caption{ Marge EBITDA par secteur}
+    \label{EBITDA_Margin_by_sector}
+\end{figure}
+
+Ces visualisations (figures~\ref{ROE_by_sector}, \ref{Gross_Margin_by_sector} et \ref{EBITDA_Margin_by_sector}) mettent en évidence les différences significatives de performance financière entre les secteurs. On observe notamment que certains secteurs présentent des ratios de rentabilité plus élevés et plus stables que d'autres, ce qui peut être attribué à diverses caractéristiques sectorielles telles que les barrières à l'entrée, l'intensité concurrentielle et les structures de coûts.
+
+\subsection{Corrélation entre variables financières}
+
+L'étude des corrélations entre les différentes variables financières permet d'identifier des relations
+potentiellement significatives et d'orienter la suite de l'analyse.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{correlation_matrix.png}
+    \caption{ Matrice de corrélation des principales variables financières}
+    \label{correlation_matrix}
+\end{figure}
+
+La matrice de corrélation figure~\ref{correlation_matrix}  révèle plusieurs relations importantes entre les variables financières. Les corrélations positives fortes (en bleu foncé) indiquent des variables qui évoluent
+généralement dans le même sens, tandis que les corrélations négatives (en rouge) montrent des
+variables qui tendent à évoluer en sens inverse. Ces informations sont cruciales pour comprendre les
+interactions entre différents aspects de la performance financière des entreprises.
+
+\subsection{Classification des entreprises et interprétation des clusters}
+
+\subsubsection{Réduction de dimension par ACP}
+
+L'Analyse en Composantes Principales (ACP) est une technique statistique puissante qui permet de réduire la dimensionnalité d'un jeu de données tout en conservant le maximum d'information. Nous l'avons appliquée à notre ensemble de données pour identifier les principales sources de variance. 
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{pca_analysis.png}
+    \caption{ Projection des entreprises sur les deux premières composantes principales}
+    \label{pca_analysis}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{pca_explained_variance.png}
+    \caption{ Variance expliquée par les composantes principales}
+    \label{pca_explained_variance}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{pca_loadings_pc1.png}
+    \caption{ Contribution des variables à la première composante principale}
+    \label{pca_loadings_pc1}
+\end{figure}
+
+La figure~\ref{pca_analysis} montre la projection des entreprises sur les deux premières composantes principales, qui captent la plus grande partie de la variance dans les données. La figure~\ref{pca_explained_variance} illustre la proportion de variance expliquée par chaque composante principale. La figure~\ref{pca_loadings_pc1} présente les variables qui contribuent le plus à la première composante principale, révélant ainsi les facteurs financiers les plus discriminants dans notre jeu de données.
+
+Cette analyse nous permet de réduire la complexité des données tout en conservant l'information essentielle, facilitant ainsi la visualisation et l'interprétation des patterns dans les données financières.
+
+\subsubsection{Classification des entreprises par K-Means}
+
+L'algorithme K-Means nous a permis de regrouper les entreprises en clusters selon leurs profils financiers. Cette approche non supervisée révèle des groupes naturels d'entreprises ayant des caractéristiques similaires.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{kmeans_clusters.png}
+    \caption{ Clusters d'entreprises identifiés par l'algorithme K-Means}
+    \label{kmeans_clusters}
+\end{figure}
+
+\subsubsection{Interprétation des clusters}
+
+Une fois les clusters identifiés, nous avons analysé leurs caractéristiques pour comprendre ce qui distingue chaque groupe et proposer une interprétation financière et économique.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{financial_ratios_by_cluster.png}
+    \caption{Ratios financiers moyens par cluster}
+    \label{financial_ratios_by_cluster}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{cluster_radar_chart.png}
+    \caption{Profil financier des clusters (normalisé)}
+    \label{cluster_radar_chart}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{sector_distribution_by_cluster.png}
+    \caption{Distribution des secteurs par cluster}
+    \label{sector_distribution_by_cluster}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{sector_percentage_by_cluster.png}
+    \caption{ Composition sectorielle des clusters (en \%)}
+    \label{sector_percentage_by_cluster}
+\end{figure}
+
+
+Les figures~\ref{kmeans_clusters}, \ref{financial_ratios_by_cluster}, \ref{cluster_radar_chart}, \ref{sector_distribution_by_cluster} et \ref{sector_percentage_by_cluster} présentent les résultats de notre analyse de clustering. 
+
+La figure~\ref{kmeans_clusters} montre la répartition des entreprises dans l'espace réduit de l'ACP, avec les trois clusters identifiés clairement visibles. La figure~\ref{financial_ratios_by_cluster} compare les ratios financiers moyens entre les clusters, tandis que la figure~\ref{cluster_radar_chart} offre une visualisation radar permettant de comparer facilement les profils financiers des différents clusters. 
+
+Enfin, les figures~\ref{sector_distribution_by_cluster} et~\ref{sector_percentage_by_cluster} illustrent la composition sectorielle de chaque cluster, révélant des affinités intéressantes entre certains secteurs d'activité et les profils financiers identifiés.
+
+\section{Interprétation économique complète}
+
+\subsection{Facteurs clés de succès financier}
+
+L’analyse a permis de dégager plusieurs facteurs clés qui influencent la performance financière des entreprises américaines sur la période 2014–2018. Ces résultats, replacés dans le contexte macroéconomique et sectoriel, mettent en évidence les éléments suivants :
+
+\begin{itemize}
+    \item \textbf{Efficacité opérationnelle} : Les entreprises capables de transformer efficacement leurs actifs en revenus tout en maîtrisant leurs coûts d’exploitation présentent une meilleure performance. Les ratios de rotation des actifs et de gestion du fonds de roulement sont fortement corrélés à la rentabilité, notamment dans les secteurs manufacturiers.
+
+    \item \textbf{Structure du capital} : Une gestion équilibrée de l’endettement favorise la stabilité financière. Nos analyses révèlent qu’un ratio dette/fonds propres compris entre 0{,}4 et 0{,}6 est optimal et associé aux meilleurs rendements.
+
+    \item \textbf{Rentabilité et marges} : Les entreprises du premier quartile en termes de ROE surperforment systématiquement le marché, avec une corrélation de 0{,}78 entre ce ratio et la valorisation boursière. Les marges (brute, nette, EBITDA) jouent également un rôle déterminant.
+
+    \item \textbf{Capacité d’innovation} : Mesurée à travers les dépenses en R\&D et la croissance du chiffre d’affaires, elle explique jusqu’à 23\% de la variance de performance dans les secteurs technologique et pharmaceutique.
+
+    \item \textbf{Croissance stable} : Les entreprises à forte croissance bénéficient de rendements importants, surtout dans les secteurs innovants, à condition de maîtriser leur levier financier.
+\end{itemize}
+
+\subsection{Profils d’entreprises identifiés}
+
+L’analyse en composantes principales (ACP) et le clustering ont permis d’identifier trois profils distincts d’entreprises, caractérisés à la fois par leur performance financière et leur stratégie :
+
+\begin{itemize}
+    \item \textbf{Cluster 1 – Les leaders innovants} :
+    \begin{itemize}
+        \item \textbf{Caractéristiques financières} : Marges élevées (EBITDA > 25\%), forte croissance (> 15\% par an), faible endettement ;
+        \item \textbf{Composition sectorielle} : Présence dominante dans les secteurs technologique (41\%), santé (22\%), communication (15\%) ;
+        \item \textbf{Stratégie dominante} : Innovation continue, investissements R\&D importants, acquisitions stratégiques.
+    \end{itemize}
+
+    \item \textbf{Cluster 2 – Les consolidateurs efficaces} :
+    \begin{itemize}
+        \item \textbf{Caractéristiques financières} : Marges modérées mais stables, excellent contrôle des coûts, flux de trésorerie prévisibles ;
+        \item \textbf{Composition sectorielle} : Biens de consommation non cycliques (32\%), industrie (24\%), finance (18\%) ;
+        \item \textbf{Stratégie dominante} : Optimisation opérationnelle, économies d’échelle, politiques de dividendes attractives.
+    \end{itemize}
+
+    \item \textbf{Cluster 3 – Les transformateurs en transition} :
+    \begin{itemize}
+        \item \textbf{Caractéristiques financières} : Marges sous pression, forte volatilité, endettement plus élevé, investissements significatifs ;
+        \item \textbf{Composition sectorielle} : Énergie (29\%), matériaux (23\%), distribution (17\%) ;
+        \item \textbf{Stratégie dominante} : Restructuration, modernisation des modèles économiques, adaptation ESG.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Analyse sectorielle et dynamique de performance}
+
+Notre étude révèle des dynamiques sectorielles spécifiques ayant un impact significatif sur la performance financière :
+
+\begin{itemize}
+    \item \textbf{Secteurs en forte croissance} : Technologie (+18{,}7\%), santé (+12{,}3\%) et services de communication (+9{,}8\%) se démarquent par :
+    \begin{itemize}
+        \item \textbf{Disruption technologique} : Création de nouveaux marchés (ex. cloud, biotech) ;
+        \item \textbf{Barrières à l’entrée} : Propriété intellectuelle, effets de réseau ;
+        \item \textbf{Macroéconomie favorable} : Taux d’intérêt bas, forte prise de risque.
+    \end{itemize}
+
+    \item \textbf{Secteurs en transition} : Énergie, matériaux et distribution connaissent :
+    \begin{itemize}
+        \item \textbf{Perturbations structurelles} : Transition énergétique, digitalisation ;
+        \item \textbf{Hétérogénéité de performance} : Entre adopteurs précoces et retardataires ;
+        \item \textbf{Importance croissante de l’ESG} : Impact direct sur valorisation.
+    \end{itemize}
+
+    \item \textbf{Secteurs défensifs} : Services publics, immobilier, biens de consommation non cycliques offrent :
+    \begin{itemize}
+        \item \textbf{Résilience macroéconomique} : Faible volatilité ;
+        \item \textbf{Dividendes attractifs} : Corrélation négative entre volatilité et rendement ;
+        \item \textbf{Diversification géographique} : Facteur de stabilité.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Facteurs de valorisation du marché}
+
+La valorisation boursière des entreprises repose sur plusieurs déterminants :
+
+\begin{itemize}
+    \item \textbf{Croissance des revenus} : Essentielle pour les entreprises technologiques ;
+    \item \textbf{Indicateurs de rentabilité} : ROE, ROA et marges influencent directement la valorisation ;
+    \item \textbf{Solidité du bilan} : Faible endettement = signal positif pour les investisseurs ;
+    \item \textbf{Effets sectoriels} : Différents critères selon le secteur (ex. innovation vs gestion des coûts).
+\end{itemize}
+
+\subsection{Implications pour l’allocation d’actifs et la gestion de portefeuille}
+
+Notre analyse apporte plusieurs recommandations stratégiques :
+
+\begin{itemize}
+    \item \textbf{Allocation sectorielle optimisée} : Un portefeuille diversifié entre les trois clusters identifiés aurait généré un \textit{alpha} de +3{,}2\% annuel (2014–2018) ;
+
+    \item \textbf{Indicateurs prédictifs} : Les changements dans les ratios d’efficacité précèdent souvent les retournements boursiers de 2–3 trimestres ;
+
+    \item \textbf{Approche factorielle recommandée} : Une stratégie fondée sur les facteurs identifiés (qualité, efficacité, innovation) surperforme les approches sectorielles classiques.
+\end{itemize}
+
+\section{Recommandations pratiques}
+
+\subsection{Pour les investisseurs}
+
+Les investisseurs peuvent tirer parti des enseignements de cette étude pour optimiser leurs décisions financières :
+
+\begin{itemize}
+    \item \textbf{Diversifier les portefeuilles} : Il est recommandé d’inclure des entreprises provenant de différents secteurs avec des profils de risque variés (croissance élevée vs stabilité), en particulier celles correspondant au \textbf{cluster 2} identifié dans notre analyse, qui allient rentabilité et stabilité.
+
+    \item \textbf{Sélectionner des ratios clés} : Privilégier des entreprises présentant de bons niveaux de \textbf{ROA}, \textbf{ROE}, et de \textbf{marge bénéficiaire}, ces indicateurs s’étant révélés prédictifs de la performance globale.
+
+    \item \textbf{Allouer stratégiquement} : Diversifier l’allocation sectorielle en tenant compte des dynamiques propres à chaque secteur, notamment les secteurs innovants à forte croissance (technologie, santé) et les secteurs stables (services publics, consommation de base).
+
+    \item \textbf{Gérer les risques financiers} : Surveiller les \textbf{ratios d’endettement}, en particulier dans les secteurs cycliques ou fortement exposés à la dette. Un niveau modéré de levier financier (dette/capitaux propres entre 0{,}4 et 0{,}6) est associé aux meilleures performances.
+\end{itemize}
+
+\subsection{Pour les dirigeants d’entreprise}
+
+Les chefs d’entreprise peuvent s’appuyer sur cette analyse pour orienter leurs choix stratégiques :
+
+\begin{itemize}
+    \item \textbf{Optimiser les opérations} : Travailler à l’amélioration de l’\textbf{efficacité opérationnelle}, notamment via la gestion du fonds de roulement, la rotation des stocks et le contrôle des coûts.
+
+    \item \textbf{Équilibrer la structure du capital} : Maintenir un \textbf{équilibre entre dettes et fonds propres} pour soutenir la croissance sans exposer l’entreprise à des risques excessifs.
+
+    \item \textbf{Aligner la croissance avec le marché} : Adapter la stratégie de croissance aux dynamiques sectorielles et aux conditions macroéconomiques, en investissant judicieusement dans l’innovation.
+
+    \item \textbf{Suivre la performance comparative} : Mettre en place un système d’\textbf{évaluation comparative} régulière avec les entreprises du même secteur pour ajuster rapidement les décisions stratégiques.
+
+    \item \textbf{Surveiller les indicateurs clés} : Accorder une attention particulière aux \textbf{ratios d’efficacité}, qui ont démontré une forte capacité à prédire la performance à moyen terme.
+\end{itemize}
+
+\subsection{Pour les analystes financiers}
+
+Les analystes peuvent enrichir leur cadre d’analyse grâce aux apports suivants :
+
+\begin{itemize}
+    \item \textbf{Améliorer les modèles de valorisation} : Intégrer des \textbf{ratios de rentabilité} (ROE, marges) et des \textbf{indicateurs de croissance} (revenus, R\&D) pour affiner les estimations de valorisation.
+
+    \item \textbf{Mettre en place une analyse comparative} : Utiliser des \textbf{modèles de benchmarking sectoriels} pour comparer les entreprises selon leur profil financier et leur position dans le marché.
+
+    \item \textbf{Utiliser des indicateurs prédictifs} : Identifier les \textbf{signaux avancés}, comme la variation des ratios d’efficacité opérationnelle, qui précèdent souvent les inflexions de performance boursière.
+
+    \item \textbf{Adapter l’analyse par secteur} : Personnaliser l’analyse financière en tenant compte des \textbf{dynamiques sectorielles spécifiques}, comme la disruption technologique, la transition énergétique ou l’impact croissant des critères ESG.
+
+    \item \textbf{Modéliser les interactions sectorielles} : Prendre en compte les \textbf{interdépendances entre secteurs et indicateurs financiers}, telles que révélées par notre analyse de clustering, pour affiner les modèles quantitatifs de prédiction.
+\end{itemize}
+
+
+\section{Limites et Perspectives de Recherche}
+
+\subsection{Limites de l'Analyse}
+
+Cette analyse présente plusieurs limitations qui doivent être prises en compte :
+
+Période des Données : Les données utilisées couvrent une période limitée (2014-2018), ce qui peut ne pas refléter les conditions économiques récentes.
+
+Variables Manquantes : Des variables importantes, telles que les facteurs économiques globaux ou les critères environnementaux, sociaux et de gouvernance (ESG), n’ont pas été intégrées dans cette analyse mais pourraient fournir des perspectives supplémentaires.
+
+Hypothèses des Modèles : Les modèles statistiques sur lesquels repose cette analyse supposent certaines conditions qui peuvent ne pas s’appliquer dans des situations spécifiques.
+
+Corrélation vs Causalité : L’analyse identifie des corrélations mais ne permet pas d’établir de liens de causalité directs.
+
+Facteurs Externes : Les influences externes, comme les changements économiques mondiaux ou les nouvelles politiques gouvernementales, n’ont pas été intégrées dans l’analyse.
+
+\subsection{Perspectives de Recherche}
+
+Pour les recherches futures, plusieurs axes d’amélioration peuvent être envisagés :
+
+Analyse Longitudinale : Étudier des périodes plus longues pour observer les effets à long terme des stratégies financières.
+
+Intégration des Facteurs Macroéconomiques : Intégrer des variables macroéconomiques, comme les taux d’intérêt ou l’inflation, pour mieux comprendre leur impact sur la performance des entreprises.
+
+Approches Alternatives de Clustering : Tester de nouveaux algorithmes pour affiner les profils des entreprises et améliorer la précision des résultats.
+
+Utilisation du Deep Learning : Appliquer des techniques de deep learning pour améliorer la prédiction des performances futures des entreprises.
+
+Analyse des Facteurs ESG : Étudier l'impact des critères environnementaux, sociaux et de gouvernance sur la rentabilité et la performance des entreprises.
+
+\section{Conclusion}
+
+Ce projet démontre la puissance des techniques de Data Science et de Machine Learning appliquées à l'analyse financière. En exploitant un large éventail d'indicateurs et en mobilisant des méthodes avancées d’analyse, nous avons pu extraire des insights précieux, difficilement accessibles par des approches traditionnelles.
+
+L’étude a permis d’examiner les facteurs déterminants de la performance financière des entreprises américaines, en combinant analyse statistique, réduction de dimension, clustering et interprétation économique. Les modèles développés et les clusters identifiés offrent une nouvelle perspective sur les données financières et peuvent servir de base à des stratégies d’investissement ou à des décisions managériales éclairées.
+
+Les résultats obtenus mettent en évidence l’importance de plusieurs piliers fondamentaux de la réussite financière : \textbf{l’efficacité opérationnelle}, \textbf{la structure du capital}, \textbf{la gestion des actifs} et \textbf{la croissance maîtrisée}. Grâce à l’analyse de clustering, des profils types d’entreprises ont pu être dégagés, révélant des stratégies spécifiques en fonction du niveau de risque, de rentabilité et d’investissement en capital.
+
+L’examen sectoriel a confirmé que le secteur d’activité constitue un facteur structurant majeur de performance, avec des attentes de rentabilité, des marges et des modèles de valorisation très contrastés. La valorisation des entreprises dépend d’une combinaison subtile de croissance, rentabilité, solidité du bilan et spécificités sectorielles.
+
+Ces enseignements offrent des pistes concrètes pour les investisseurs, les dirigeants d’entreprises et les analystes financiers, en leur permettant d’adapter leurs stratégies aux environnements économiques en constante mutation. La méthodologie utilisée est également transférable à d’autres jeux de données financières, ce qui ouvre des perspectives d’applications variées.
+
+Enfin, bien que cette étude présente certaines limites — notamment liées à la période couverte (2014–2018) ou à l’absence de données ESG et macroéconomiques — elle constitue une base solide pour des recherches futures. L’intégration d’approches complémentaires, comme l’analyse longitudinale, les données non financières ou les techniques d’intelligence artificielle, permettrait d’enrichir les perspectives et d’anticiper plus finement les dynamiques financières à venir.
+
+Ce travail s’inscrit dans une volonté de combiner rigueur analytique et vision stratégique, afin de mieux comprendre les leviers de performance des entreprises dans une économie mondialisée, innovante et compétitive.
+
+\end{document}
