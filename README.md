@@ -67,7 +67,7 @@ financial_analysis/
 ### Installation
 1. Cloner le dépôt
    ```bash
-   git clone https://github.com/votre-nom/financial-analysis.git
+   git clone [https://github.com/votre-nom/financial-analysis.git](https://github.com/salaheddineelazouti/Projet-d-Analyse-Financi-re)
    cd financial-analysis
    ```
 
@@ -120,7 +120,7 @@ financial_analysis/
 | Walid EL BOUCHTI | ML Engineer |
 | Aasma ouamalich | Financial Analyst |
 
-ces roles pour assurer le bon deroulement de projet
+Ces rôles sont répartis  pour assurer le bon deroulement de projet
 ## Licence
 Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
 
