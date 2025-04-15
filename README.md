@@ -112,7 +112,7 @@ financial_analysis/
 - Modèles prédictifs avec une précision de plus de 80% pour certaines métriques financières
 
 ## Équipe du projet
-| Nom | Rôle |
+| Nom | Rôle dans ce projet|
 |------|------|
 | Salah Eddine EL AZOUTI | Chef de projet & Data Scientist |
 | Salma Saaidi | Analyste financière |
@@ -120,6 +120,7 @@ financial_analysis/
 | Walid EL BOUCHTI | ML Engineer |
 | Aasma ouamalich | Financial Analyst |
 
+ces roles pour assurer le bon deroulement de projet
 ## Licence
 Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
 
